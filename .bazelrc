@@ -1,0 +1,27 @@
+build:manylinux2010 --crosstool_top=@org_tensorflow//third_party/toolchains/preconfig/ubuntu16.04/gcc7_manylinux2010-nvcc-cuda10.1:toolchain
+build --spawn_strategy=standalone
+build --strategy=Genrule=standalone
+build -c opt
+build --define=framework_shared_object=true
+build --experimental_repo_remote_exec
+build:android --crosstool_top=//external:android/crosstool
+build:android --host_crosstool_top=@bazel_tools//tools/cpp:toolchain
+build:android --action_env TF_HEADER_DIR=""
+build:android --action_env TF_SHARED_LIBRARY_DIR=""
+build:android --action_env TF_SHARED_LIBRARY_NAME=""
+build:android_arm --config=android
+build:android_arm --cpu=armeabi-v7a
+build:android_arm --fat_apk_cpu=armeabi-v7a
+build:android_arm64 --config=android
+build:android_arm64 --cpu=arm64-v8a
+build:android_arm64 --fat_apk_cpu=arm64-v8a
+build:android_x86 --config=android
+build:android_x86 --cpu=x86
+build:android_x86 --fat_apk_cpu=x86
+build:android_x86_64 --config=android
+build:android_x86_64 --cpu=x86_64
+build:android_x86_64 --fat_apk_cpu=x86_64
+build --action_env TF_HEADER_DIR="/ist/users/wuttikornp/.conda/envs/sent-emb/lib/python3.7/site-packages/tensorflow/include"
+build --action_env TF_SHARED_LIBRARY_DIR="/ist/users/wuttikornp/.conda/envs/sent-emb/lib/python3.7/site-packages/tensorflow"
+build --action_env TF_SHARED_LIBRARY_NAME="libtensorflow_framework.so.2"
+build --action_env TF_CXX11_ABI_FLAG="1"
